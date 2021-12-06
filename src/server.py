@@ -10,7 +10,10 @@ __server__ = Flask(__name__)
 def main():
     return ("Hello from flask")
 
-@__server__.route('/stream/<path:numstream>/<path:filename>')
+@__server__.route('/stream/<path:code_stream>/<path:filename>')
 def assets(code_stream, filename):
-    path = os.path.join(s.get_path_folder_streaming(), f"live_{code_stream}")
-	return send_from_directory(path, filename)
+    """
+    TODO: this method need sto change from the camera needing
+    """
+    path = os.path.join(s.get_path_folder_streaming(), code_stream)
+    return send_from_directory(path, filename)
