@@ -4,16 +4,16 @@ from flask import send_from_directory
 import os
 import settings as s
 
-__server__ = Flask(__name__)
+app = Flask(__name__)
 
-@__server__.route('/')
+@app.route('/')
 def main():
-    return ("Hello from flask")
+    return("Web Server")
 
-@__server__.route('/stream/<path:code_stream>/<path:filename>')
-def assets(code_stream, filename):
-    """
-    TODO: this method need sto change from the camera needing
-    """
-    path = os.path.join(s.get_path_folder_streaming(), code_stream)
+@app.route('/<path:id_camera>/<path:folder_stream>/<path:filename>')
+def streamming(id_camera, folder_stream, filename):
+    """ Method to serve video fragments to HLS player"""
+    source_path = s.get_path_folder_streaming()
+    stream_folder_name = s.get_stream_folder_name()
+    path = os.path.join(source_path, id_camera, stream_folder_name)
     return send_from_directory(path, filename)

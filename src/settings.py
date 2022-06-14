@@ -11,3 +11,6 @@ def get_port():
 
 def get_path_folder_streaming():
     return parser.get('streaming', 'path_folder')
+
+def get_stream_folder_name():
+    return parser.get('stream', 'folder_name')
